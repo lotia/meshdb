@@ -71,18 +71,18 @@ dev = [
     "beautifulsoup4==4.12.*",
     "freezegun==1.5.1",
     "moto[s3]==5.0.*",
+    "ruff>=0.17.2",
 ]
 
 [project.scripts]
 meshdb-spreadsheet-import = "meshdb.utils.spreadsheet_import.main:main"
 
 [build-system]
-requires = [ "setuptools >= 61", "wheel", "mypy" ]
+requires = ["setuptools >= 61", "wheel", "mypy"]
 build-backend = "setuptools.build_meta"
 
 [tool.setuptools.packages.find]
 where = ["src"]
-
 
 [tool.mypy]
 plugins = ["mypy_django_plugin.main", "mypy_drf_plugin.main"]
@@ -94,7 +94,7 @@ disallow_untyped_calls = true
 disallow_untyped_defs = true
 disallow_incomplete_defs = true
 warn_unused_configs = true
-files = [ "src/" ]
+files = ["src/"]
 exclude = [
     "src/meshapi/tests/.*",
     "src/meshapi_hooks/tests/.*",
@@ -102,7 +102,7 @@ exclude = [
     "src/meshdb/utils/spreadsheet_import/.*",
     "src/meshapi/util/django_pglocks.py",
     "src/meshapi/models/util/custom_many_to_many.py",
-    "src/meshapi/docs.py"
+    "src/meshapi/docs.py",
 ]
 
 [[tool.mypy.overrides]]
@@ -114,18 +114,14 @@ module = [
 ]
 follow_imports = "skip"
 
-
 [tool.django-stubs]
 django_settings_module = "meshdb.settings"
 
-
-[tool.black]
+[tool.ruff]
 line-length = 120
-include = '\.pyi?$'
 
+[tool.ruff.lint]
+per-file-ignores = { "**/migrations/*.py" = ["E501", "RUF012"] }
 
-[tool.isort]
-profile = "black"
-line_length = 120
-known_first_party = [ "meshdb" ]
-
+[tool.ruff.lint.isort]
+known-first-party = ["meshdb"]
