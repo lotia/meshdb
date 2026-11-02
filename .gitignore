@@ -178,3 +178,6 @@ spreadsheet_data
 data/
 
 .env.container
+
+# vscode workspace files which should be local
+*.code-workspace
