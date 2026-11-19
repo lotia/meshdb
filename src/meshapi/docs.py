@@ -19,13 +19,11 @@ class SpectacularSwaggerInjectVarsView(SpectacularSwaggerView):
             '\n\nTo use an authorization token, use the "Authorize" button, and under "tokenAuth" enter '
             "`Token ` before the content of your token, like this: `Token xxxyyyyyzzz`"
             "\n\nIf you have username/password credentials (like those used on the admin UI) you can login "
-            f'via the admin UI or [DRF login page]({reverse("rest_framework:login")}?next=/api-docs/swagger/)'
+            f"via the admin UI or [DRF login page]({reverse('rest_framework:login')}?next=/api-docs/swagger/)"
         )
         response = super().get(request, *args, **kwargs)
         session_id = request.session.session_key
-        response.data[
-            "settings"
-        ] = f"""
+        response.data["settings"] = f"""
             {json.dumps(spectacular_settings.SWAGGER_UI_SETTINGS, indent=2)[:-2]},
             deepLinking: true,
             onComplete: ui_onComplete,

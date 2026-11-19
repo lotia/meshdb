@@ -100,8 +100,7 @@ def import_and_sync_uisp_devices(uisp_devices: List[UISPDevice], target_network_
                     notify_administrators_of_data_issue(
                         [downclass_device(device) for device in existing_devices],
                         DeviceSerializer,
-                        message=f"Possible duplicate objects detected, devices "
-                        f"share the same UISP ID ({uisp_uuid})",
+                        message=f"Possible duplicate objects detected, devices share the same UISP ID ({uisp_uuid})",
                     )
 
                 for existing_device in existing_devices:
@@ -396,7 +395,6 @@ def sync_link_table_into_los_objects(target_network_number: Optional[int] = None
         .exclude(type=Link.LinkType.FIBER)
         .exclude(type=Link.LinkType.VPN)
     ):
-
         if (
             target_network_number
             and link.from_device.node.network_number != target_network_number

@@ -129,8 +129,7 @@ class NYCAddressInfo:
         found_zip = str(addr_props["postalcode"])
         if found_zip != zip_code:
             error = (
-                f"Zip code '{zip_code}' does not match zip code '{found_zip}'"
-                "returned from geosearch.planninglabs.nyc"
+                f"Zip code '{zip_code}' does not match zip code '{found_zip}'returned from geosearch.planninglabs.nyc"
             )
             logging.error(error)
             raise InvalidAddressError(error)

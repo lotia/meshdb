@@ -153,7 +153,7 @@ class TestUISPImportUtils(TestCase):
         )
 
         with pytest.raises(ValueError):
-            get_link_type({"type": "other", "frequency": 1234, "id": "abc"}),
+            (get_link_type({"type": "other", "frequency": 1234, "id": "abc"}),)
 
     def test_get_building_from_network_number(self):
         node1 = Node(
