@@ -4,7 +4,7 @@ requires-python = ">=3.11, < 3.12"
 version = "0.1"
 
 dependencies = [
-    "celery[redis]==5.3.*",
+    "celery[redis]==5.7.*",
     "django>=4.2,<4.3",
     # FIXME: Go back to PyPI once DRF adds support for using Django's read-only permissions
     #  https://github.com/nycmeshnet/meshdb/issues/524
@@ -72,6 +72,7 @@ dev = [
     "moto[s3]==5.0.*",
     "pytest-django[django]>=4.13.0",
     "pytest-cov>=5.0.0",
+    "ruff>=0.17.2",
 ]
 
 [project.scripts]
@@ -117,14 +118,12 @@ follow_imports = "skip"
 [tool.django-stubs]
 django_settings_module = "meshdb.settings"
 
-[tool.black]
+[tool.ruff]
 line-length = 120
-include = '\.pyi?$'
+extend-exclude = ["**/migrations/*"]
 
-[tool.isort]
-profile = "black"
-line_length = 120
-known_first_party = ["meshdb"]
+[tool.ruff.lint.isort]
+known-first-party = ["meshdb"]
 
 [tool.pytest.ini_options]
 DJANGO_SETTINGS_MODULE = "meshdb.settings"
